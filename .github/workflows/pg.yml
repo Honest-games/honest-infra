@@ -1,4 +1,4 @@
-name: Portainer CI
+name: Postgres CI
 on:
   push:
     branches: [ "main" ]
@@ -23,7 +23,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: portainer
-          remote: /honest/portainer
+          remote: /honest/pg
           host: ${{env.SSH_IP}}
           username: ${{env.SSH_USER}}
           password: ${{env.SSH_PASSWORD}}
@@ -35,7 +35,10 @@ jobs:
           password: ${{env.SSH_PASSWORD}}
           port: 22
           script: |
-            cd /honest/portainer
+            cd /honest/pg
+            export PG_PASS=${{env.PG_PASS}}
+            export PGADMIN_USER=${{env.PGADMIN_USER}}
+            export PGADMIN_PASSWORD=${{env.PGADMIN_PASSWORD}}
             
             docker-compose down --remove-orphans
             docker-compose up -d

@@ -1,0 +1,35 @@
+version: "3"
+services:
+  pg:
+    container_name: pg
+    image: postgres:16-alpine
+    restart: always
+    volumes:
+      - pgVol:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASS}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - dc-net
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    networks:
+      - dc-net
+    ports:
+      - 30135:80
+    volumes:
+      - pgaVol:/var/lib/pgadmin
+networks:
+  dc-net:
+    external: true
+volumes:
+  pgVol:
+  pgaVol:
