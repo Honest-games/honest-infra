@@ -22,7 +22,7 @@ jobs:
       - name: Upload
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: portainer
+          local: pg
           remote: /honest/pg
           host: ${{env.SSH_IP}}
           username: ${{env.SSH_USER}}
