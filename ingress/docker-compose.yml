@@ -1,6 +1,6 @@
 services:
   ingress:
-    image: nginx
+    image: nginx:alpine
     container_name: ingress
     restart: always
     volumes:
