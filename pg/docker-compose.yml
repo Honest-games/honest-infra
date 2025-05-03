@@ -11,8 +11,6 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     networks:
       - dc-net
-    ports:
-      - 5432:5432
 
   pgadmin:
     container_name: pgadmin
