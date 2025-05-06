@@ -39,6 +39,7 @@ jobs:
           script: |
             cd /honest/pg
             export PG_PASS=${{env.PG_PASS}}
+            export PG_TEST_PASS=${{env.PG_TEST_PASS}}
             export PGADMIN_USER=${{env.PGADMIN_USER}}
             export PGADMIN_PASSWORD=${{env.PGADMIN_PASSWORD}}
             
