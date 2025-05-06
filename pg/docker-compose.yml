@@ -9,6 +9,8 @@ services:
     environment:
       POSTGRES_PASSWORD: ${PG_PASS}
       PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5444:5432"
     networks:
       - dc-net
 
