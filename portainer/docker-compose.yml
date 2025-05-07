@@ -9,6 +9,13 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "portainer_data:/data"
     restart: always
+    networks:
+      - dc_net
+
 
 volumes:
   portainer_data:
+
+networks:
+  dc_net:
+    external: true
