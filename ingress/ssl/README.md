@@ -13,4 +13,4 @@ On server shell:
 sudo apt install certbot -y
 sudo certbot certonly --webroot --webroot-path /honest/ingress/well-known -m german.reus@bk.ru -n --agree-tos -d chestno-game.online
 ```
-Copy certs from `/etc/letsencrypt/live/chestno-game.online/`
+Copy certs from `/etc/letsencrypt/live/chestno-game.online/` to secrets repo
