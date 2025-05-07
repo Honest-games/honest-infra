@@ -17,7 +17,7 @@ jobs:
         uses: duskmoon314/action-load-env@v1.1.0
       - name: Copy SSL cert
         run: |
-          mkdir /tmp/deploy/chestno-game.online/ssl
+          mkdir -p /tmp/deploy/chestno-game.online/ssl
           cp ssl/chestno-game.online /tmp/deploy/chestno-game.online/ssl -r
       - name: Checkout project
         uses: actions/checkout@v3
