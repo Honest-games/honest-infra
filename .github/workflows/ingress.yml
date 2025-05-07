@@ -26,7 +26,8 @@ jobs:
           token: ${{secrets.CI_PAT}}
       - name: Set SSL cert
         run: |
-          cp /tmp/deploy/chestno-game.online/ssl/* ./honest/ingress/ssl
+          mkdir -p ./honest/ingress/ssl/chestno-game.online
+          cp -r /tmp/deploy/chestno-game.online/ssl/* ./honest/ingress/ssl/chestno-game.online
       - name: Upload
         uses: garygrossgarten/github-action-scp@release
         with:
