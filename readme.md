@@ -7,3 +7,6 @@
 ```bash
 apt  install docker-compose
 ```
+
+### Ssl certs setup
+[./ingress/ssl/README.md](./ingress/ssl/README.md)
