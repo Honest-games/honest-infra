@@ -10,12 +10,12 @@ services:
       - "portainer_data:/data"
     restart: always
     networks:
-      - dc_net
+      - dc-net
 
 
 volumes:
   portainer_data:
 
 networks:
-  dc_net:
+  dc-net:
     external: true
