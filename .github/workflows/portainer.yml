@@ -6,7 +6,7 @@ on:
   workflow_call:
 jobs:
   build:
-    if: contains(github.event.head_commit.message, '[portainer]')
+    if: contains(github.event.head_commit.message, '[portainer]') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
