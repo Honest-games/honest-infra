@@ -9,8 +9,6 @@ services:
     environment:
       POSTGRES_PASSWORD: ${PG_PASS}
       PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - "5444:5432"
     networks:
       - dc-net
 
@@ -23,8 +21,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     networks:
       - dc-net
-    ports:
-      - 30135:80
     volumes:
       - pgaVol:/var/lib/pgadmin
 networks:
