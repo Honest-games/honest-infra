@@ -17,8 +17,8 @@ jobs:
         uses: duskmoon314/action-load-env@v1.1.0
       - name: Copy SSL cert
         run: |
-          mkdir -p /tmp/deploy/chestno-game.online/ssl
-          cp -r ssl/chestno-game.online /tmp/deploy/chestno-game.online/ssl
+          mkdir -p /tmp/deploy/ssl
+          cp -r ssl/chestno-game.online /tmp/deploy/ssl
       - name: Checkout project
         uses: actions/checkout@v3
         with:
@@ -27,8 +27,8 @@ jobs:
       - name: Set SSL cert
         run: |
           mkdir -p ./ingress/ssl/chestno-game.online
-          ls /tmp/deploy/chestno-game.online/ssl
-          cp -r /tmp/deploy/chestno-game.online/ssl/* ./ingress/ssl/chestno-game.online
+          ls /tmp/deploy/ssl/chestno-game.online
+          cp -r /tmp/deploy/ssl/chestno-game.online/* ./ingress/ssl/chestno-game.online
           ls ./ingress/ssl/chestno-game.online
       - name: Upload
         uses: garygrossgarten/github-action-scp@release
