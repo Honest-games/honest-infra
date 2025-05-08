@@ -18,7 +18,7 @@ jobs:
       - name: Copy SSL cert
         run: |
           mkdir -p /tmp/deploy/ssl
-          cp -r ssl/chestno-game.online /tmp/deploy/ssl
+          cp -r ssl/* /tmp/deploy/ssl
       - name: Checkout project
         uses: actions/checkout@v3
         with:
@@ -26,10 +26,8 @@ jobs:
           token: ${{secrets.CI_PAT}}
       - name: Set SSL cert
         run: |
-          mkdir -p ./ingress/ssl/chestno-game.online
-          ls /tmp/deploy/ssl/chestno-game.online
-          cp -r /tmp/deploy/ssl/chestno-game.online/* ./ingress/ssl/chestno-game.online
-          ls ./ingress/ssl/chestno-game.online
+          mkdir -p ./ingress/ssl
+          cp -r /tmp/deploy/ssl/* ./ingress/ssl
       - name: Upload
         uses: garygrossgarten/github-action-scp@release
         with:
