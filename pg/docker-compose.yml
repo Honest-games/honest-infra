@@ -23,6 +23,8 @@ services:
       - dc-net
     volumes:
       - pgaVol:/var/lib/pgadmin
+    ports:
+      - "30135:80"
 networks:
   dc-net:
     external: true
