@@ -1,0 +1,1 @@
+0 9 * * * . /etc/environment; /app/pg_backup_and_send.sh >> /var/log/cron.log 2>&1
