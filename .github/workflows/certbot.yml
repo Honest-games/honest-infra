@@ -19,14 +19,6 @@ jobs:
         with:
           repository: ${{env.GITHUB_REPOSITORY}}
           token: ${{secrets.CI_PAT}}
-      - name: Upload yml file
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: infra/certbot.yml
-          remote: /kuber/infra/certbot.yml
-          host: ${{env.SSH_IP}}
-          username: ${{env.SSH_USER}}
-          password: ${{env.SSH_PASSWORD}}
       - name: Upload certbot dir
         uses: garygrossgarten/github-action-scp@release
         with:
