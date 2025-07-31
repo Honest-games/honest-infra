@@ -15,19 +15,11 @@ jobs:
           token: ${{secrets.CI_PAT}}
       - name: load-env
         uses: duskmoon314/action-load-env@v1.1.0
-      - name: Copy SSL cert
-        run: |
-          mkdir -p /tmp/deploy/ssl
-          cp -r ssl/* /tmp/deploy/ssl
       - name: Checkout project
         uses: actions/checkout@v3
         with:
           repository: ${{env.GITHUB_REPOSITORY}}
           token: ${{secrets.CI_PAT}}
-      - name: Set SSL cert
-        run: |
-          mkdir -p ./ingress/ssl
-          cp -r /tmp/deploy/ssl/* ./ingress/ssl
       - name: Upload
         uses: garygrossgarten/github-action-scp@release
         with:

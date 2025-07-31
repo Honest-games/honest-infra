@@ -5,8 +5,7 @@ services:
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
-      - ./well-known:/etc/nginx/well-known:ro #для публикации acme-challenge от certbot
+      - ../certs:/etc/nginx/ssl/all.chestno-game.all:ro
     ports:
       - 80:80
       - 443:443
