@@ -25,7 +25,7 @@ echo "Setting up cron job for 6 AM daily..."
   echo "TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}"
   echo "REGRU_PASSWORD=${REGRU_PASSWORD}"
   echo "REGRU_USERNAME=${REGRU_USERNAME}"
-  echo "0 6 * * * sh /usr/local/bin/renew-certs.sh >> /var/log/cron.log 2>&1"
+  echo "0 6 */30 * * sh /usr/local/bin/renew-certs.sh >> /var/log/cron.log 2>&1"
 #  echo "*/4 * * * * sh /usr/local/bin/renew-certs.sh >> /var/log/cron.log 2>&1"
 ) | crontab -
 
