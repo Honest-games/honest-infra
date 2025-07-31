@@ -43,4 +43,5 @@ jobs:
             export TELEGRAM_BOT_TOKEN=${{env.CERTBOT_TELEGRAM_BOT_TOKEN}}
             export TELEGRAM_CHAT_ID=${{env.CERTBOT_TELEGRAM_CHAT_ID}}
             export TEST_CERT=false
+            docker-compose -f certbot.yml down --remove-orphans
             docker-compose -f certbot.yml up -d --build --no-deps --force-recreate
