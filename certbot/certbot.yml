@@ -7,7 +7,7 @@ services:
     container_name: certbot
     restart: unless-stopped
     environment:
-      DNS_WAIT_SECONDS: 120
+      DNS_WAIT_SECONDS: 240
       CERTBOT_OWNER_EMAIL: ${CERTBOT_OWNER_EMAIL}
       DOMAINS: chestno-game.ru,*.chestno-game.ru,chestno-game.online,*.chestno-game.online
       REGRU_USERNAME: ${REGRU_USERNAME}
