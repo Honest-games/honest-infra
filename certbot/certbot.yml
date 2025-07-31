@@ -1,0 +1,24 @@
+version: "3"
+services:
+  certbot:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: certbot
+    restart: unless-stopped
+    environment:
+      DNS_WAIT_SECONDS: 120
+      CERTBOT_OWNER_EMAIL: ${CERTBOT_OWNER_EMAIL}
+      DOMAINS: chestno-game.ru,*.chestno-game.ru,chestno-game.online,*.chestno-game.online
+      REGRU_USERNAME: ${REGRU_USERNAME}
+      REGRU_PASSWORD: ${REGRU_PASSWORD}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
+      TEST_CERT: ${TEST_CERT:-true}
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh:ro
+      - ./scripts:/scripts:ro
+      - ../certs:/host-certs:rw
+networks:
+  dc-net:
+    external: true

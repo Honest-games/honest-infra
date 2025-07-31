@@ -1,0 +1,54 @@
+name: Certbot CI
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[certbot]') || contains(github.event.head_commit.message, '[ssl]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: Honest-games/honest-secrets
+          token: ${{secrets.CI_PAT}}
+      - name: load-env
+        uses: duskmoon314/action-load-env@v1.1.0
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          repository: ${{env.GITHUB_REPOSITORY}}
+          token: ${{secrets.CI_PAT}}
+      - name: Upload yml file
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: infra/certbot.yml
+          remote: /kuber/infra/certbot.yml
+          host: ${{env.SSH_IP}}
+          username: ${{env.SSH_USER}}
+          password: ${{env.SSH_PASSWORD}}
+      - name: Upload certbot dir
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: certbot
+          remote: /honest/certbot
+          host: ${{env.SSH_IP}}
+          username: ${{env.SSH_USER}}
+          password: ${{env.SSH_PASSWORD}}
+          concurrency: 20
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{env.SSH_IP}}
+          username: ${{env.SSH_USER}}
+          password: ${{env.SSH_PASSWORD}}
+          port: 22
+          script: |
+            cd /honest/certbot/
+            export CERTBOT_OWNER_EMAIL=${{env.CERTBOT_OWNER_EMAIL}}
+            export REGRU_USERNAME=${{env.CERTBOT_REGRU_USERNAME}}
+            export REGRU_PASSWORD=${{env.CERTBOT_REGRU_PASSWORD}}
+            export TELEGRAM_BOT_TOKEN=${{env.CERTBOT_TELEGRAM_BOT_TOKEN}}
+            export TELEGRAM_CHAT_ID=${{env.CERTBOT_TELEGRAM_CHAT_ID}}
+            export TEST_CERT=false
+            docker-compose -f certbot.yml up -d --build --no-deps --force-recreate
