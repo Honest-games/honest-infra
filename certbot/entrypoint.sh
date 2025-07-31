@@ -23,6 +23,8 @@ echo "Setting up cron job for 6 AM daily..."
   echo "TIMEWEB_API_KEY=${TIMEWEB_API_KEY}"
   echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}"
   echo "TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}"
+  echo "REGRU_PASSWORD=${REGRU_PASSWORD}"
+  echo "REGRU_USERNAME=${REGRU_USERNAME}"
 #  echo "0 6 */5 * * sh /usr/local/bin/renew-certs.sh >> /var/log/cron.log 2>&1"
   echo "* * * * * sh /usr/local/bin/renew-certs.sh >> /var/log/cron.log 2>&1"
 ) | crontab -
